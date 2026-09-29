@@ -1,0 +1,383 @@
+/* ─────────────────────────────────────────────
+   색깔 모음 (여기 값만 바꾸면 사이트 전체 색이 바뀝니다)
+   ───────────────────────────────────────────── */
+:root {
+  --bg: #0b0b0c;          /* 페이지 배경: 거의 검정 */
+  --card: #161618;        /* 카드 배경 */
+  --card-2: #1f1f22;      /* 탭 바, 버튼 배경 */
+  --line: #2a2a2e;        /* 구분선 */
+  --text: #f2f2f2;        /* 기본 글자 */
+  --muted: #9a9aa0;       /* 흐린 글자 */
+  --accent: #ffd400;      /* 강조색: 노랑 */
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Pretendard", -apple-system, "Apple SD Gothic Neo", sans-serif;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* ── 맨 위 메뉴 바 ── */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+}
+
+.logo {
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+.logo span { color: var(--accent); }
+
+.topbar nav a {
+  margin-left: 20px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.topbar nav a:hover,
+.topbar nav a.active { color: var(--text); }
+
+/* ── 흑백 배경 사진 영역 ── */
+.hero {
+  height: 220px;
+  background:
+    linear-gradient(to bottom, rgba(0,0,0,0.1), var(--bg)),
+    url("https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1600&q=60") center / cover;
+  filter: grayscale(100%);
+}
+
+/* ── 사진 위로 살짝 겹쳐 올라오는 카드 ── */
+.card {
+  position: relative;
+  max-width: 900px;
+  margin: -110px auto 40px;
+  padding: 20px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
+
+.card h1 {
+  margin: 0;
+  font-size: 26px;
+}
+
+.card h1 .count {
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.meta {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.meta b { color: var(--text); margin-right: 6px; }
+
+/* 종목 배지 */
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  margin-bottom: 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #111;
+}
+
+/* ── 참가비·마감·신청 버튼 줄 ── */
+.info-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.info-box {
+  flex: 1;
+  min-width: 140px;
+  padding: 10px 14px;
+  background: var(--card-2);
+  border-radius: 10px;
+}
+
+.info-box small { display: block; color: var(--muted); font-size: 12px; }
+.info-box strong { font-size: 15px; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 18px;
+  background: var(--accent);
+  color: #111;
+  font-weight: 700;
+  border-radius: 10px;
+}
+
+.btn-ghost {
+  background: #e8e8ea;
+  color: #111;
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 6px;
+}
+
+/* ── 탭 (부문 / 경기장 / 위치) ── */
+.tabs {
+  display: flex;
+  margin: 20px 0 8px;
+  padding: 4px;
+  background: var(--card-2);
+  border-radius: 10px;
+}
+
+.tabs button {
+  flex: 1;
+  padding: 9px;
+  background: none;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  color: var(--muted);
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.tabs button.active {
+  background: #2c2c30;
+  border-color: #3a3a3f;
+  color: var(--text);
+}
+
+.panel { display: none; }
+.panel.active { display: block; }
+
+/* 부문 목록 한 줄 */
+.row {
+  display: grid;
+  grid-template-columns: 1fr 80px auto;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 6px;
+  border-bottom: 1px solid var(--line);
+}
+
+.row:last-child { border-bottom: none; }
+.row .name { font-weight: 700; }
+.row .num { text-align: right; color: var(--muted); font-size: 14px; }
+
+/* 경기장 정보 */
+.venue dl { margin: 12px 6px; }
+.venue dt { color: var(--muted); font-size: 13px; margin-top: 16px; }
+.venue dd { margin: 4px 0 0; }
+
+/* 지도 */
+#map {
+  height: 380px;
+  background: var(--card-2) !important;
+  margin-top: 12px;
+  border-radius: 10px;
+}
+
+/* 밝은 지도를 뒤집어서 어두운 테마에 맞춰요 */
+.leaflet-tile-pane {
+  filter: invert(1) hue-rotate(180deg) brightness(0.9) contrast(0.9) grayscale(0.4);
+}
+
+.map-links { margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap; }
+
+/* ── 홈: 다가오는 대회 목록 ── */
+.event-item {
+  display: grid;
+  grid-template-columns: 64px 1fr auto;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 6px;
+  border-bottom: 1px solid var(--line);
+}
+
+.event-item:hover { background: var(--card-2); }
+
+.date-box {
+  text-align: center;
+  padding: 6px 0;
+  background: var(--card-2);
+  border-radius: 8px;
+}
+
+.date-box .m { font-size: 11px; color: var(--muted); }
+.date-box .d { font-size: 20px; font-weight: 800; }
+
+.event-item .where { color: var(--muted); font-size: 13px; margin-top: 2px; }
+
+.section-title {
+  margin: 28px 0 4px;
+  font-size: 16px;
+}
+
+/* ── 달력(FullCalendar)을 어두운 테마로 ── */
+.fc {
+  --fc-border-color: var(--line);
+  --fc-page-bg-color: var(--card);
+  --fc-neutral-bg-color: var(--card-2);
+  --fc-list-event-hover-bg-color: var(--card-2);
+  --fc-today-bg-color: rgba(255, 212, 0, 0.08);
+  --fc-button-bg-color: var(--card-2);
+  --fc-button-border-color: var(--line);
+  --fc-button-hover-bg-color: #2c2c30;
+  --fc-button-active-bg-color: #3a3a3f;
+  font-size: 14px;
+}
+
+.fc .fc-toolbar-title { font-size: 20px; }
+.fc-event { cursor: pointer; font-weight: 600; }
+.fc .fc-daygrid-event { color: #111; }
+
+.not-found { text-align: center; color: var(--muted); padding: 40px 0; }
+
+/* ── 필터 버튼 ── */
+#filters { margin: 18px 0 16px; }
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  background: var(--card-2);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--muted);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.chip:hover { color: var(--text); }
+
+.chip.active {
+  background: var(--text);
+  border-color: var(--text);
+  color: #111;
+  font-weight: 700;
+}
+
+.chip .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.section-title .count {
+  color: var(--muted);
+  font-weight: 400;
+}
+
+/* ── 대회 지도 페이지 ── */
+#worldmap {
+  height: 560px;
+  border-radius: 10px;
+  background: var(--card-2) !important;
+}
+
+/* 지도 위 말풍선을 어두운 테마로 */
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+  background: var(--card);
+  color: var(--text);
+}
+
+.leaflet-popup-content { font-family: inherit; }
+.leaflet-popup-content .where { color: var(--muted); font-size: 12px; margin: 4px 0 10px; }
+.leaflet-popup-content .btn { padding: 6px 12px; font-size: 12px; color: #111; }
+
+/* ── [6강] 검색창 ── */
+.search {
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 11px 14px;
+  background: var(--card-2);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  color: var(--text);
+  font: inherit;
+  font-size: 14px;
+}
+
+.search:focus { outline: none; border-color: var(--accent); }
+
+/* ── [6강] D-day, 신청 상태 꼬리표 ── */
+.tags { display: flex; gap: 6px; margin-top: 6px; }
+
+.tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  vertical-align: top;
+}
+
+.tag.dday { background: var(--accent); color: #111; }
+.tag.open { background: rgba(61, 220, 151, 0.15); color: #3ddc97; }
+.tag.soon { background: rgba(255, 107, 107, 0.18); color: #ff6b6b; }
+.tag.closed { background: var(--card-2); color: var(--muted); }
+
+.status-open { color: #3ddc97; }
+.status-soon { color: #ff6b6b; font-weight: 700; }
+.status-closed { color: var(--muted); }
+
+/* 마감된 신청 버튼 */
+.btn.disabled { background: var(--card-2); color: var(--muted); cursor: default; }
+
+/* 캘린더 추가 · 공유 버튼 줄 */
+.action-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+/* ── [7강] 맨 아래 안내 ── */
+.footer {
+  max-width: 900px;
+  margin: 0 auto 40px;
+  padding: 0 20px;
+  color: var(--muted);
+  font-size: 12px;
+  text-align: center;
+  line-height: 1.4;
+}
+
+/* ── 휴대폰 화면 ── */
+@media (max-width: 600px) {
+  .topbar nav a { margin-left: 12px; }
+  .card { margin: -110px 12px 24px; padding: 16px; }
+  .card h1 { font-size: 21px; }
+  .row { grid-template-columns: 1fr 50px auto; }
+  .fc .fc-toolbar { flex-direction: column; gap: 8px; }
+  #worldmap { height: 420px; }
+}

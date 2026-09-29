@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>대회 정보 | 하이브리드 캘린더</title>
+
+  <!-- [7강] 검색엔진과 카톡 공유 미리보기에 쓰이는 정보 -->
+  <meta name="description" content="대회 일정, 장소, 참가비, 신청 마감일, 부문별 참가자 정보를 확인하세요.">
+  <meta property="og:title" content="HYBRID KR · 하이브리드 운동 대회 캘린더">
+  <meta property="og:description" content="대회 일정, 장소, 참가비, 신청 마감일, 부문별 참가자 정보를 확인하세요.">
+  <meta property="og:type" content="website">
+  <!-- 브라우저 탭 아이콘 -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏋️</text></svg>">
+
+  <!-- 한글 글꼴(프리텐다드) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+  <!-- 지도 도구(Leaflet)의 디자인 파일 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <a class="logo" href="index.html">HYBRID<span>KR</span></a>
+    <nav>
+      <a href="index.html">대회 일정</a>
+      <a href="map.html">대회 지도</a>
+      <a id="report-link" href="#" target="_blank" hidden>대회 제보</a>
+    </nav>
+  </header>
+
+  <div class="hero"></div>
+
+  <!-- 이 카드 안의 내용은 event.js가 대회 정보로 채워 넣어요 -->
+  <section class="card" id="event"></section>
+
+  <!-- 지도 도구(Leaflet) -->
+  <!-- [7강] 페이지 맨 아래 안내 -->
+  <footer class="footer">
+    <p>대회 정보는 주최 측 사정으로 바뀔 수 있어요. 참가 전 꼭 공식 페이지를 확인하세요.</p>
+    <p>© 2026 HYBRID KR</p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+  <script src="config.js"></script>
+  <script src="events.js"></script>
+  <script src="common.js"></script>
+  <script src="event.js"></script>
+</body>
+</html>

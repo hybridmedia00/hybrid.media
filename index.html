@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>하이브리드 캘린더</title>
+
+  <!-- [7강] 검색엔진과 카톡 공유 미리보기에 쓰이는 정보 -->
+  <meta name="description" content="국내외 하이브리드 운동 대회(하이브리드 레이스, 크로스핏, 트라이애슬론) 일정을 달력으로 한눈에 확인하세요.">
+  <meta property="og:title" content="HYBRID KR · 하이브리드 운동 대회 캘린더">
+  <meta property="og:description" content="국내외 하이브리드 운동 대회(하이브리드 레이스, 크로스핏, 트라이애슬론) 일정을 달력으로 한눈에 확인하세요.">
+  <meta property="og:type" content="website">
+  <!-- 브라우저 탭 아이콘 -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏋️</text></svg>">
+
+  <!-- 한글 글꼴(프리텐다드) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+  <!-- 우리 사이트 디자인 -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- 달력 도구 + 한국어 -->
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.15/locales/ko.global.min.js"></script>
+</head>
+<body>
+
+  <!-- 맨 위 메뉴 -->
+  <header class="topbar">
+    <a class="logo" href="index.html">HYBRID<span>KR</span></a>
+    <nav>
+      <a class="active" href="index.html">대회 일정</a>
+      <a href="map.html">대회 지도</a>
+      <a id="report-link" href="#" target="_blank" hidden>대회 제보</a>
+    </nav>
+  </header>
+
+  <!-- 흑백 사진 -->
+  <div class="hero"></div>
+
+  <!-- 사진 위로 올라오는 카드 -->
+  <section class="card">
+    <h1>대회 캘린더</h1>
+    <p class="meta">국내외 하이브리드 운동 대회를 한눈에</p>
+
+    <!-- 필터 버튼이 들어갈 자리 (filters.js가 채워요) -->
+    <div id="filters"></div>
+
+    <!-- 달력이 그려질 자리 -->
+    <div id="calendar"></div>
+
+    <!-- 다가오는 대회 목록이 들어갈 자리 -->
+    <h2 class="section-title">다가오는 대회 <span class="count" id="result-count"></span></h2>
+    <div id="upcoming"></div>
+  </section>
+
+  <!-- [7강] 페이지 맨 아래 안내 -->
+  <footer class="footer">
+    <p>대회 정보는 주최 측 사정으로 바뀔 수 있어요. 참가 전 꼭 공식 페이지를 확인하세요.</p>
+    <p>© 2026 HYBRID KR</p>
+  </footer>
+
+  <!-- 대회 데이터를 먼저 불러오고, 그다음 동작 파일을 불러옵니다 -->
+  <script src="config.js"></script>
+  <script src="events.js"></script>
+  <script src="common.js"></script>
+  <script src="filters.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
