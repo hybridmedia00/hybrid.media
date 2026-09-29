@@ -53,10 +53,10 @@ a { color: inherit; text-decoration: none; }
 
 /* ── 흑백 배경 사진 영역 ── */
 .hero {
-  height: 220px;
+  height: 320px;
   background:
     linear-gradient(to bottom, rgba(0,0,0,0.1), var(--bg)),
-    url("https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1600&q=60") center / cover;
+    url("images/hero-hyrox.jpg") center 82% / cover;  /* 하이록스 썰매 끌기 사진 (퍼블릭 도메인) */
   filter: grayscale(100%);
 }
 
@@ -362,6 +362,8 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ── [7강] 맨 아래 안내 ── */
+.footer a { text-decoration: underline; }
+
 .footer {
   max-width: 900px;
   margin: 0 auto 40px;
@@ -374,6 +376,7 @@ a { color: inherit; text-decoration: none; }
 
 /* ── 휴대폰 화면 ── */
 @media (max-width: 600px) {
+  .hero { height: 240px; }
   .topbar nav a { margin-left: 12px; }
   .card { margin: -110px 12px 24px; padding: 16px; }
   .card h1 { font-size: 21px; }
