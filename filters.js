@@ -8,7 +8,7 @@
 // 지금 선택된 필터 (처음에는 모두 "전체")
 const filter = {
   region: "전체",   // 전체 / 국내 / 해외
-  type: "전체",     // 전체 / 하이브리드 레이스 / 크로스핏 / ...
+  type: "전체",     // 전체 / 하이록스 / 어반웨이브 / 로어그릿 / 파워게임즈
   search: ""        // [6강] 검색어
 };
 
@@ -34,8 +34,9 @@ function filteredEvents() {
 function setupFilters(onChange) {
   const regions = ["전체", "국내", "해외"];
 
-  // 종목 목록은 실제 대회들에서 모아요 (시트에 새 종목을 적으면 버튼도 자동으로 생겨요)
-  const types = ["전체"];
+  // 종목 버튼: TYPE_COLORS에 적힌 종목을 먼저 넣고,
+  // 시트에만 있는 새 종목이 있으면 뒤에 덧붙여요
+  const types = ["전체"].concat(Object.keys(TYPE_COLORS));
   EVENTS.forEach(function (ev) {
     if (!types.includes(ev.type)) types.push(ev.type);
   });
